@@ -1,0 +1,19 @@
+import pyttsx3
+import PyPDF2
+
+speak=pyttsx3.init() 
+rate=speak.getProperty('rate')
+speak.setProperty('rate',130)
+voices=speak.getProperty('voices')
+speak.setProperty('voice',voices[1].id)
+
+
+b=open('python.pdf','rb')
+pdfReader=PyPDF2.PdfReader(b)
+pages=len(pdfReader.pages)
+page=pdfReader.pages[2]
+text=page.extract_text()
+print(text)
+speak.say(text)
+
+speak.runAndWait()
